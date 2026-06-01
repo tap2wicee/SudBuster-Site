@@ -152,15 +152,15 @@
     </div>
 
     <!-- STICKY MOBILE & FLOATING CTA -->
-    <div class="fixed bottom-6 right-6 z-50 hidden md:block">
+    <div class="fixed bottom-6 right-72 z-50 hidden md:block">
         <a href="#booking" class="bg-brand-blue hover:bg-blue-600 text-white font-semibold px-6 py-4 rounded-full shadow-neon-blue transition-all duration-300 flex items-center gap-3 group">
             <i class="fa-solid fa-calendar-check text-lg group-hover:rotate-12 transition-transform"></i>
             <span>Book Your Detail</span>
         </a>
     </div>
     <div class="fixed bottom-0 left-0 right-0 z-50 md:hidden bg-brand-charcoal bg-opacity-80 filter backdrop-blur-lg border-t border-brand-border p-4 flex gap-3">
-        <a href="tel:18005557827" class="flex-1 bg-gray-800 hover:bg-gray-700 text-white text-center py-3.5 rounded-xl font-medium text-sm tracking-wide transition-all">
-            <i class="fa-solid fa-phone mr-2"></i>Call Now
+<a href="tel:13142629087" class="flex-1 bg-gray-800 hover:bg-gray-700 text-white text-center py-3.5 rounded-xl font-medium text-sm tracking-wide transition-all">
+    <i class="fa-solid fa-phone mr-2"></i>Call or Text
         </a>
         <a href="#booking" class="flex-2 bg-brand-blue hover:bg-blue-600 text-white text-center py-3.5 px-6 rounded-xl font-semibold text-sm tracking-wide shadow-neon-blue transition-all">
             Book Appointment
@@ -180,10 +180,23 @@
                 <a href="#process" class="hover:text-white transition-colors">Our Process</a>
                 <a href="#faqs" class="hover:text-white transition-colors">FAQs</a>
             </nav>
-            <div class="hidden md:flex items-center space-x-6">
-                <a href="#quote" class="text-sm font-medium text-gray-400 hover:text-brand-blue transition-colors">Get Free Quote</a>
-                <a href="#booking" class="bg-white hover:bg-gray-200 text-black font-semibold text-sm px-5 py-2.5 rounded-lg transition-all">Book Now</a>
-            </div>
+           <div class="hidden md:flex items-center space-x-6">
+
+    <a href="tel:13142629087"
+       class="text-white font-bold hover:text-brand-blue transition-colors">
+       <i class="fa-solid fa-phone mr-2"></i>
+       (314) 262-9087
+    </a>
+
+    <a href="#quote" class="text-sm font-medium text-gray-400 hover:text-brand-blue transition-colors">
+        Get Free Quote
+    </a>
+
+    <a href="#booking" class="bg-white hover:bg-gray-200 text-black font-semibold text-sm px-5 py-2.5 rounded-lg transition-all">
+        Book Now
+    </a>
+
+</div>
             <!-- Mobile Menu Trigger -->
             <button onclick="toggleMobileMenu()" class="md:hidden text-gray-400 hover:text-white text-xl focus:outline-none">
                 <i class="fa-solid fa-bars-staggered"></i>
@@ -233,7 +246,12 @@
                     Get Free Quote
                 </a>
             </div>
-
+<div class="mt-6">
+    <a href="tel:13142629087"
+       class="text-lg font-bold text-white hover:text-brand-blue transition-colors">
+       📞 Call or Text: (314) 262-9087
+    </a>
+</div>
             <!-- Trust Badges Row -->
             <div class="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl mx-auto pt-8 border-t border-brand-border" data-aos="fade-up" data-aos-delay="400">
                 <div class="flex items-center justify-center gap-2 text-gray-400 text-sm">
@@ -506,7 +524,7 @@
                 <p class="text-gray-400 text-sm mt-2">Fill out our rapid setup form to reserve your professional mobile detailing appointment.</p>
             </div>
 
-            <form id="quote" class="glass-card p-6 sm:p-10 rounded-2xl flex flex-col space-y-6" onsubmit="event.preventDefault(); alert('Thank you! Our detailing team will reach out via text inside 15 minutes.');">
+            <form id="quote" class="glass-card p-6 sm:p-10 rounded-2xl flex flex-col space-y-6" onsubmit="handleFormSubmit(event)">
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
                     <div>
                         <label class="block text-xs font-bold uppercase tracking-wider text-gray-400 mb-2">Full Name</label>
@@ -644,7 +662,10 @@
                     <a href="#" class="hover:text-brand-blue transition-colors"><i class="fa-brands fa-facebook"></i></a>
                     <a href="#" class="hover:text-brand-blue transition-colors"><i class="fa-brands fa-youtube"></i></a>
                 </div>
-                <span class="text-xs text-gray-400 block">Support via (555) 000-0000</span>
+                <a href="tel:13142629087"
+   class="text-xs text-gray-400 block hover:text-white transition-colors">
+   Call or Text: (314) 262-9087
+</a>
             </div>
         </div>
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 border-t border-gray-800 text-center text-xs">
@@ -837,6 +858,49 @@
         }
 
         window.addEventListener('DOMContentLoaded', initializeVoiceDevice);
+        async function handleFormSubmit(event) {
+    event.preventDefault();
+    
+    const form = event.target;
+    const formData = {
+    name: document.getElementById('name').value,
+    phone: document.getElementById('phone').value,
+    vehicle: document.getElementById('vehicle').value,
+    package: form.querySelector('select').value,
+    location: document.getElementById('location').value
+};
+    // Show loading state
+    const submitBtn = form.querySelector('button[type="submit"]');
+    const originalText = submitBtn.innerHTML;
+    submitBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin mr-2"></i>Submitting...';
+    submitBtn.disabled = true;
+
+    try {
+        // Send to your backend
+        const response = await fetch(`${BACKEND_URL}/api/lead`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(formData)
+        });
+
+        if (response.ok) {
+            alert('🎉 Booking request received! We\'ll text you within 15 minutes.');
+            form.reset();
+        } else {
+            throw new Error('Submission failed');
+        }
+    } catch (error) {
+        alert('⚠️ Connection issue. Please call or text us at (314) 262-9087');
+        console.error('Form error:', error);
+    } finally {
+        submitBtn.innerHTML = originalText;
+        submitBtn.disabled = false;
+    }
+}
     </script>
+    <a href="tel:13142629087"
+   class="fixed bottom-24 left-6 z-50 bg-green-600 hover:bg-green-700 text-white px-5 py-4 rounded-full shadow-lg font-bold">
+   📞 Call
+</a>
 </body>
 </html>
