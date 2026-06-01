@@ -37,29 +37,56 @@ app.get('/api/token', (req, res) => {
 });
 
 // 2. Webhook endpoint: Twilio triggers this when someone texts your Twilio number
-app.post('/api/incoming-sms', (req, res) => {
+// 2. WEBHOOK: RECEIVE INCOMING TEXT MESSAGES & FORWARD TO CELL
+app.post('/api/incoming-sms', async (req, res) => {
+    const fromNumber = req.body.From;
+    const messageBody = req.body.Body;
+
     const messageData = {
-        from: req.body.From,
-        body: req.body.Body,
+        from: fromNumber,
+        body: messageBody,
         timestamp: new Date().toLocaleTimeString()
     };
 
-    // Push the text to your website's dashboard instantly via WebSockets
+    // Keep sending it to your website dashboard
     io.emit('new-sms', messageData);
 
-    // Reply back automatically to the customer's phone
+    // Initialize Twilio REST Client using your hidden credentials
+    const client = twilio(ACCOUNT_SID, AUTH_TOKEN);
+
+    try {
+        // FORWARD the message straight to your personal cell phone
+        await client.messages.create({
+            body: `[SudBuster Web Alert] From ${fromNumber}: ${messageBody}`,
+            from: process.env.TWILIO_PHONE_NUMBER, // Your Twilio phone number
+            to: process.env.MY_CELL_PHONE        // Your personal cell phone number
+        });
+    } catch (error) {
+        console.error("Failed to forward text message to cell phone:", error);
+    }
+
+    // Send an automated receipt confirmation back to the customer's phone
     const twiml = new twilio.twiml.MessagingResponse();
-    twiml.message("Thanks for reaching SudBuster! Our team has received your text on our main dashboard and will reply shortly.");
+    twiml.message("Thanks for reaching SudBuster! Our team has received your text and will reply shortly.");
     res.type('text/xml').send(twiml.toString());
 });
 
 // 3. Webhook endpoint: Twilio triggers this when someone calls your Twilio number
+// 3. WEBHOOK: RECEIVE INCOMING VOICE CALLS & FORWARD TO CELL
 app.post('/api/incoming-call', (req, res) => {
     const twiml = new twilio.twiml.VoiceResponse();
-    const dial = twiml.dial({ answerOnBridge: true });
-    dial.client('sudbuster_operator'); // This routes the audio directly to your website
+    
+    // Create a dial sequence that triggers simultaneously
+    const dial = twiml.dial({ 
+        answerOnBridge: true,
+        timeout: 20 // Rings for 20 seconds before going to voicemail
+    });
+    
+    // 1. Ring the operator logged into your website interface
+    dial.client('sudbuster_operator'); 
+    
+    // 2. Simultaneously ring your actual cell phone number!
+    dial.number(process.env.MY_CELL_PHONE); 
 
     res.type('text/xml').send(twiml.toString());
 });
-
-server.listen(5000, () => console.log('Communication server running on port 5000'));
