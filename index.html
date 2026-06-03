@@ -1,64 +1,262 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>SudBuster | Premium Mobile Car Detailing</title>
-  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-</head>
-<body class="bg-[#0b0c10] text-[#c5c6c7] font-sans">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SudBuster | Premium Mobile Car Detailing & Paint Correction</title>
+    <meta name="description" content="Luxury mobile car detailing delivered straight to your doorstep. Experience the Apple-level cleanliness and showroom shine with SudBuster. Book your transformation today.">
+    
+    <!-- Pre-compiled Production Tailwind CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css">
+    
+    <!-- Google Fonts & FontAwesome -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- AOS Animation Library -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 
-  <!-- Header -->
-  <header class="fixed top-0 left-0 right-0 z-50 bg-[#0b0c10]/80 backdrop-blur-md border-b border-[#1f2833]">
-    <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
-      <div class="text-2xl font-black tracking-wider text-white">
-        SUD<span class="text-[#66fcf1]">BUSTER</span>
-      </div>
-      
-      <!-- Clickable Header Phone Number -->
-      <a href="tel:+13146490476" class="hidden sm:flex items-center gap-2 px-4 py-2 rounded-full bg-[#1f2833] text-white font-semibold border border-[#66fcf1]/30 hover:border-[#66fcf1] transition-all duration-300">
-        <span class="w-2 h-2 rounded-full bg-green-400 animate-pulse"></span>
-        (314) 649-0476
-      </a>
-    </div>
-  </header>
+    <style>
+        /* Production Style Token Architecture */
+        :root {
+            --brand-blue: #0052FF;
+            --brand-glow: #00D1FF;
+            --brand-dark: #0A0A0C;
+            --brand-charcoal: #121216;
+            --brand-card: rgba(18, 18, 22, 0.65);
+            --brand-border: rgba(255, 255, 255, 0.08);
+            --shadow-neon-blue: 0 0 20px rgba(0, 82, 255, 0.35);
+            --shadow-neon-glow: 0 0 30px rgba(0, 209, 255, 0.2);
+        }
 
-  <!-- Hero Section -->
-  <main class="relative min-h-screen flex items-center justify-center pt-20 overflow-hidden">
-    <!-- Glow Effect Backdrops -->
-    <div class="absolute top-1/4 left-1/4 w-96 h-96 bg-[#66fcf1]/10 rounded-full blur-3xl pointer-events-none"></div>
-    <div class="absolute bottom-1/4 right-1/4 w-96 h-96 bg-[#45a29e]/10 rounded-full blur-3xl pointer-events-none"></div>
+        body {
+            background-color: var(--brand-dark);
+            color: #F3F4F6;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            overflow-x: hidden;
+        }
 
-    <div class="max-w-4xl mx-auto px-6 text-center z-10">
-      <span class="text-xs font-bold tracking-widest text-[#66fcf1] uppercase bg-[#66fcf1]/10 px-4 py-1.5 rounded-full border border-[#66fcf1]/20">
-        Mobile Detailing Straight To Your Door
-      </span>
-      
-      <h1 class="text-5xl md:text-7xl font-black text-white tracking-tight mt-6 mb-6 leading-none">
-        The Ultimate Ceramic Shine, <br>
-        <span class="text-transparent bg-clip-text bg-gradient-to-r from-[#66fcf1] to-[#45a29e]">
-          Without Leaving Home.
-        </span>
-      </h1>
-      
-      <p class="text-lg md:text-xl text-[#c5c6c7] max-w-2xl mx-auto mb-10 leading-relaxed">
-        Premium interior restoration and exterior gloss enhancements. Your car is our canvas—brought directly to your driveway.
-      </p>
-
-      <!-- Action Buttons Area -->
-      <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
-        <!-- Call Button -->
-        <a href="tel:+13146490476" class="w-full sm:w-auto px-8 py-4 bg-gradient-to-r from-[#66fcf1] to-[#45a29e] text-[#0b0c10] font-bold rounded-xl shadow-[0_0_20px_rgba(102,252,241,0.3)] hover:shadow-[0_0_35px_rgba(102,252,241,0.5)] transform hover:-translate-y-0.5 transition-all duration-300 text-center text-lg">
-          Call Now: (314) 649-0476
-        </a>
+        /* Color Utility Class Mappings */
+        .bg-brand-dark { background-color: var(--brand-dark); }
+        .bg-brand-charcoal { background-color: var(--brand-charcoal); }
+        .bg-brand-blue { background-color: var(--brand-blue); }
+        .text-brand-blue { color: var(--brand-blue); }
+        .text-brand-glow { color: var(--brand-glow); }
+        .border-brand-border { border-color: var(--brand-border); }
+        .shadow-neon-blue { box-shadow: var(--shadow-neon-blue); }
         
-        <!-- Text Button -->
-        <a href="sms:+13146490476?body=Hi%20SudBuster!%20I'd%20like%20to%20get%20a%20quote%20for%20a%20detailing%20service." class="w-full sm:w-auto px-8 py-4 bg-[#1f2833] text-white font-bold rounded-xl border border-[#45a29e]/30 hover:border-[#66fcf1] transform hover:-translate-y-0.5 transition-all duration-300 text-center text-lg">
-          Text For A Quote
-        </a>
-      </div>
-    </div>
-  </main>
+        /* Glassmorphic UI Containers */
+        .glass-card {
+            background: var(--brand-card);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid var(--brand-border);
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
 
-</body>
-</html>
+        .glass-card:hover {
+            border-color: rgba(0, 82, 255, 0.5);
+            box-shadow: 0 0 30px rgba(0, 82, 255, 0.15);
+            transform: translateY(-4px);
+        }
+
+        /* Ambient Lighting FX */
+        .text-glow {
+            text-shadow: 0 0 12px rgba(0, 209, 255, 0.4);
+        }
+
+        .glow-border-active {
+            border-color: var(--brand-blue);
+            box-shadow: 0 0 15px rgba(0, 82, 255, 0.3);
+        }
+
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--brand-dark);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #1F2937;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--brand-blue);
+        }
+
+        /* Before/After Transformation Slider */
+        .slider-container {
+            position: relative;
+            overflow: hidden;
+        }
+        .img-before {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .img-after {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+        .comparison-slider {
+            position: absolute;
+            z-index: 10;
+            top: 0;
+            bottom: 0;
+            width: 100%;
+            background: transparent;
+            opacity: 0;
+            cursor: ew-resize;
+        }
+
+        /* Cinematic Performance Preloader */
+        #preloader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: var(--brand-dark);
+            z-index: 9999;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: opacity 0.5s ease;
+        }
+
+        .pulse-glow {
+            animation: pulse 2s infinite alternate;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(0.98); opacity: 0.8; box-shadow: 0 0 20px rgba(0, 82, 255, 0.2); }
+            100% { transform: scale(1.02); opacity: 1; box-shadow: 0 0 40px rgba(0, 209, 255, 0.6); }
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- PRELOADER -->
+    <div id="preloader">
+        <div class="text-center">
+            <div class="text-4xl font-extrabold tracking-wider text-white mb-2">SUD<span class="text-brand-blue text-glow">BUSTER</span></div>
+            <div class="h-0.5 w-24 bg-brand-blue mx-auto rounded-full pulse-glow"></div>
+        </div>
+    </div>
+
+    <!-- STICKY MOBILE & FLOATING CTA -->
+    <div class="fixed bottom-6 right-6 z-50 hidden md:block">
+        <a href="tel:+13146490476" class="bg-brand-blue hover:bg-blue-600 text-white font-semibold px-6 py-4 rounded-full shadow-neon-blue transition-all duration-300 flex items-center gap-3 group">
+            <i class="fa-solid fa-phone text-lg group-hover:rotate-12 transition-transform"></i>
+            <span>Call SudBuster: (314) 649-0476</span>
+        </a>
+    </div>
+    
+    <!-- UPDATED: MOBILE BOTTOM BAR ROUTED TO YOUR LINE -->
+    <div class="fixed bottom-0 left-0 right-0 z-50 md:hidden bg-brand-charcoal bg-opacity-80 filter backdrop-blur-lg border-t border-brand-border p-4 flex gap-3">
+        <a href="tel:+13146490476" class="flex-1 bg-brand-blue hover:bg-blue-600 text-white text-center py-3.5 rounded-xl font-bold text-sm tracking-wide shadow-neon-blue transition-all">
+            <i class="fa-solid fa-phone mr-2"></i>Call Now
+        </a>
+        <a href="sms:+13146490476?body=Hi%20SudBuster!%20I'd%20like%20to%20get%20a%20quote%20for%20a%20detailing%20service." class="flex-1 bg-gray-800 hover:bg-gray-700 text-white text-center py-3.5 rounded-xl font-medium text-sm tracking-wide transition-all">
+            <i class="fa-solid fa-comment-sms mr-2"></i>Text Us
+        </a>
+    </div>
+
+    <!-- HEADER / NAVIGATION -->
+    <header class="fixed top-0 w-full z-40 bg-brand-dark bg-opacity-40 filter backdrop-blur-md border-b border-brand-border">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <a href="#" class="text-2xl font-black tracking-wider text-white">
+                SUD<span class="text-brand-blue">BUSTER</span>
+            </a>
+            <nav class="hidden md:flex items-center space-x-8 text-sm font-medium text-gray-400">
+                <a href="#services" class="hover:text-white transition-colors">Services</a>
+                <a href="#why-us" class="hover:text-white transition-colors">Why SudBuster</a>
+                <a href="#transformations" class="hover:text-white transition-colors">Before & After</a>
+                <a href="#process" class="hover:text-white transition-colors">Our Process</a>
+                <a href="#faqs" class="hover:text-white transition-colors">FAQs</a>
+            </nav>
+            <div class="hidden md:flex items-center space-x-6">
+                <a href="tel:+13146490476" class="text-sm font-bold text-white hover:text-brand-blue transition-colors flex items-center gap-2">
+                    <i class="fa-solid fa-phone text-brand-blue"></i> (314) 649-0476
+                </a>
+                <a href="sms:+13146490476?body=Hi%20SudBuster!%20I'd%20like%20to%20get%20a%20quote%20for%20a%20detailing%20service." class="bg-white hover:bg-gray-200 text-black font-semibold text-sm px-5 py-2.5 rounded-lg transition-all">Text For Quote</a>
+            </div>
+            <!-- Mobile Menu Trigger -->
+            <button onclick="toggleMobileMenu()" class="md:hidden text-gray-400 hover:text-white text-xl focus:outline-none">
+                <i class="fa-solid fa-bars-staggered"></i>
+            </button>
+        </div>
+        <!-- Mobile Dropdown -->
+        <div id="mobile-menu" class="hidden absolute top-20 left-0 w-full bg-brand-charcoal border-b border-brand-border p-6 flex flex-col space-y-3 text-center md:hidden transition-all duration-300">
+            <a href="#services" onclick="toggleMobileMenu()" class="text-gray-300 py-2">Services</a>
+            <a href="#why-us" onclick="toggleMobileMenu()" class="text-gray-300 py-2">Why SudBuster</a>
+            <a href="#transformations" onclick="toggleMobileMenu()" class="text-gray-300 py-2">Before & After</a>
+            <a href="#process" onclick="toggleMobileMenu()" class="text-gray-300 py-2">Our Process</a>
+            <a href="tel:+13146490476" onclick="toggleMobileMenu()" class="bg-brand-blue text-white py-3 rounded-xl font-semibold">Call (314) 649-0476</a>
+        </div>
+    </header>
+
+    <!-- HERO SECTION -->
+    <section class="relative min-h-screen flex items-center justify-center pt-20 overflow-hidden">
+        <!-- Visual Backdrop -->
+        <div class="absolute inset-0 bg-cover bg-center z-0 transform scale-105 filter blur-sm opacity-40" style="background-image: url('https://images.unsplash.com/photo-1616788494707-ec28f08d05a1?auto=format&fit=crop&q=80&w=1800');"></div>
+        <div class="absolute inset-0 bg-gradient-to-t from-brand-dark via-brand-dark to-transparent z-10 opacity-90"></div>
+        
+        <!-- Glowing Ambient Lights -->
+        <div class="absolute top-1/4 left-1/4 w-96 h-96 bg-blue-600 opacity-10 rounded-full filter blur-3xl pointer-events-none"></div>
+        <div class="absolute bottom-1/4 right-1/4 w-96 h-96 bg-cyan-400 opacity-5 rounded-full filter blur-3xl pointer-events-none"></div>
+
+        <div class="relative z-20 max-w-5xl mx-auto px-4 text-center mt-12 md:mt-0">
+            <!-- Micro-badge -->
+            <div class="inline-flex items-center gap-2 bg-blue-600 bg-opacity-10 border border-blue-500 border-opacity-30 px-4 py-1.5 rounded-full text-xs font-semibold tracking-wider text-brand-glow uppercase mb-6" data-aos="fade-down">
+                <i class="fa-solid fa-sparkles"></i> Elite Mobile Automotive Care
+            </div>
+            
+            <h1 class="text-4xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight text-white mb-6 leading-tight" data-aos="fade-up" data-aos-delay="100">
+                Your Car Deserves More <br><span class="text-glow text-gray-100">Than Just a Wash.</span>
+            </h1>
+            
+            <p class="max-w-2xl mx-auto text-lg sm:text-xl text-gray-400 mb-10 leading-relaxed" data-aos="fade-up" data-aos-delay="200">
+                Premium mobile detailing that restores shine, turns heads, and makes your vehicle feel brand new again. Brought straight to your location.
+            </p>
+
+            <!-- UPDATED ACTION CLUSTER: CONVERTED TO DIRECT CLICK-TO-CALL & CLICK-TO-TEXT -->
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16" data-aos="fade-up" data-aos-delay="300">
+                <a href="tel:+13146490476" class="w-full sm:w-auto bg-brand-blue hover:bg-blue-600 text-white font-bold px-8 py-4 rounded-xl shadow-neon-blue transition-all flex items-center justify-center gap-3 group">
+                    <i class="fa-solid fa-phone text-sm"></i>
+                    <span>Call Now: (314) 649-0476</span>
+                </a>
+                <a href="sms:+13146490476?body=Hi%20SudBuster!%20I'd%20like%20to%20get%20a%20quote%20for%20a%20detailing%20service." class="w-full sm:w-auto bg-gray-900 hover:bg-gray-800 border border-brand-border text-white font-semibold px-8 py-4 rounded-xl transition-all flex items-center justify-center gap-2">
+                    <i class="fa-solid fa-comment-sms text-brand-blue"></i>
+                    Text For A Quote
+                </a>
+            </div>
+
+            <!-- Trust Badges Row -->
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl mx-auto pt-8 border-t border-brand-border" data-aos="fade-up" data-aos-delay="400">
+                <div class="flex items-center justify-center gap-2 text-gray-400 text-sm">
+                    <i class="fa-solid fa-circle-check text-brand-blue"></i>
+                    <span>Mobile Service</span>
+                </div>
+                <div class="flex items-center justify-center gap-2 text-gray-400 text-sm">
+                    <i class="fa-solid fa-shield-halved text-brand-blue"></i>
+                    <span>Professional Grade</span>
+                </div>
+                <div class="flex items-center justify-center gap-2 text-gray-400 text-sm">
+                    <i class="fa-solid fa-award text-brand-blue"></i>
+                    <span>Satisfaction Guarantee</span>
+                </div>
+                <div class="flex items-center justify-center gap-2 text-gray-400 text-sm">
+                    <i class="fa-solid fa-star text-yellow-500"></i>
+                    <span>5-Star Rated Experience</span>
+                </div>
+            </div>
+        </div>
+    </section>
