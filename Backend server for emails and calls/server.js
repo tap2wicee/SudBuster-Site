@@ -53,11 +53,12 @@ app.post('/api/incoming-sms', (req, res) => {
     res.type('text/xml').send(twiml.toString());
 });
 
-// 3. WEBHOOK: RECEIVE INCOMING VOICE CALL ROUTING
+// 3. WEBHOOK: RECEIVE INCOMING VOICE CALL ROUTING (FORWARDED TO GOOGLE VOICE)
 app.post('/api/incoming-call', (req, res) => {
     const twiml = new twilio.twiml.VoiceResponse();
-    const dial = twiml.dial({ answerOnBridge: true });
-    dial.client('sudbuster_operator'); // Rings the identity logged into your webpage
+    
+    // Bypasses the browser dashboard and forwards any incoming tracking calls to your personal line
+    twiml.dial('+13146490476'); 
 
     res.type('text/xml').send(twiml.toString());
 });
